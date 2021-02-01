@@ -7,6 +7,33 @@
 
 #import <Foundation/Foundation.h>
 
+BOOL isLatinCharacter(char ch) {
+    @autoreleasepool {
+        // NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        // NSCharacterSet *latinCharacters = [NSCharacterSet characterSetWithCharactersInString: letters];
+        // BOOL isLetter = [latinCharacters characterIsMember: insertChar];
+        BOOL isLetter = ('a' <= ch && ch <= 'z')
+                     || ('A' <= ch && ch <= 'Z');
+        return isLetter;
+    }
+}
+
+CGFloat add(CGFloat a, CGFloat b) {
+    return a + b;
+}
+
+CGFloat sub(CGFloat a, CGFloat b) {
+    return a - b;
+}
+
+CGFloat mul(CGFloat a, CGFloat b) {
+    return a * b;
+}
+
+CGFloat divide(CGFloat a, CGFloat b) {
+    return (b != 0) ? a / b : NAN;
+}
+
 int main(int argc, const char * argv[]) {
     
     @autoreleasepool {
@@ -14,46 +41,48 @@ int main(int argc, const char * argv[]) {
         CGFloat first = 0;
         CGFloat second = 0;
         CGFloat third = 0;
+        
+        char ch;
+        
+        printf("Fun function\n");
+        printf("Please, input one symbol: ");
+        scanf("%c", &ch);
 
-        double tmp = 0;
-
+        NSLog(@"Is Latin: %s\n",
+              isLatinCharacter(ch)
+                ? "true"
+                : "false"
+        );
+        
         printf("Calculator\n");
+
         printf("Please, input first number: ");
-        // It is not a good idea scan to CGFloat (it is an object),
-        // It works, because CGFloat has only one data field of type double,
-        // But it is wrong in general.
-        // See: http://macbug.ru/cocoa/stringfspec
-        scanf("%lf", &tmp);
-        first = tmp;
+        // CGFloat is just a typedef of double or float depends on a platform, not an object
+        scanf("%lf", &first);
 
         printf("Please, input second number: ");
-        scanf("%lf", &tmp);
-        second = tmp;
-
-        /* How to work with strings in ObjC
-        https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Strings/Articles/CreatingStrings.html
-         */
-        NSString* divResult =
-            (second != 0)
-                ? [NSString stringWithFormat:@"%lf", first / second]
-                : @"ERROR";
-
-        NSLog(@"Add = %lf, Sub = %lf, Mul = %lf, Div = %@\n",
-              first + second, first - second, first * second, divResult);
+        scanf("%lf", &second);
+        
+        CGFloat divResult = divide(first, second);
+        NSLog(@"Add = %f, Sub = %f, Mul = %f, Div = %@\n",
+              add(first, second),
+              sub(first, second),
+              mul(first, second),
+              isnan(divResult)
+                  ? @"ERROR"
+                  : [NSString stringWithFormat:@"%f", divResult]
+        );
 
         printf("\nAVG Calculator\n");
 
         printf("Please, input first number: ");
-        scanf("%lf", &tmp);
-        first = tmp;
+        scanf("%lf", &first);
 
         printf("Please, input second number: ");
-        scanf("%lf", &tmp);
-        second = tmp;
+        scanf("%lf", &second);
 
         printf("Please, input third number: ");
-        scanf("%lf", &tmp);
-        third = tmp;
+        scanf("%lf", &third);
 
         NSLog(@"AVG: %lf \n", (first + second + third) / 3);
     }
