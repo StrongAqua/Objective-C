@@ -6,83 +6,12 @@
 //
 
 #import "ViewController.h"
+#import "Calculator.h"
+
+#import "FlockOfBirds.h"
+#import "Bird.h"
 
 @implementation ViewController
-
-// -------------------------------------------------------
-// Calculator
-// -------------------------------------------------------
-// Calculator types:
-enum MathOperator {
-    opAdd,
-    opSub,
-    opMul,
-    opDivide
-};
-typedef enum MathOperator Operator;
-
-// Calculator helpers:
-CGFloat add(CGFloat a, CGFloat b) {
-    return a + b;
-}
-
-CGFloat sub(CGFloat a, CGFloat b) {
-    return a - b;
-}
-
-CGFloat mul(CGFloat a, CGFloat b) {
-    return a * b;
-}
-
-CGFloat divide(CGFloat a, CGFloat b) {
-    return (b != 0) ? a / b : NAN;
-}
-
-// major method
-CGFloat calculate(Operator operator, CGFloat first, CGFloat second) {
-    switch(operator) {
-        case opAdd:
-            return add(first, second);
-        case opSub:
-            return sub(first, second);
-        case opMul:
-            return mul(first, second);
-        case opDivide:
-            return divide(first, second);
-        default:
-            return 0;
-    }
-}
-
-// -------------------------------------------------------
-// Humans
-// -------------------------------------------------------
-// Types:
-typedef enum {
-    male,
-    female
-} Gender;
-
-typedef struct {
-    NSString *name;
-    NSInteger age;
-    Gender key;
-} Human;
-
-// Let's declare enum-to-string converter as the ViewController's method:
-- (NSString*) convertToString:(Gender) whichGender {
-    switch(whichGender) {
-        case male:
-            return @"male";
-        case female:
-            return @"female";
-        default:
-            return @"unknown";
-    }
-}
-
-// And another one method to convert enum to string:
-#define genderString(_enum_) [@[@"male", @"female"] objectAtIndex:_enum_]
 
 // our "entry point":
 - (void) viewDidLoad {
@@ -90,47 +19,64 @@ typedef struct {
 
     // -----------------------------------------------------
     // Homework Task #1:
-    NSMutableArray *numbers =
-        [NSMutableArray arrayWithObjects: @"one", @"two", @"three", @"four", @"five", nil];
-
-    NSInteger count = 0;
-    for (NSNumber *number in numbers) {
-        NSLog(@"[%ld]: %@", count++, number);
-    }
-    
-    // -----------------------------------------------------
-    // Homework Task #2:
-    CGFloat first  = (CGFloat)(rand() % 10000) / 100.0;
-    CGFloat second = (CGFloat)(rand() % 10000) / 100.0;
+    NSNumber *number1 = [[NSNumber alloc] initWithDouble: (CGFloat)(rand() % 10000) / 100.0];
+    NSNumber *number2 = [[NSNumber alloc] initWithDouble: (CGFloat)(rand() % 10000) / 100.0];
 
     NSLog(@"\nCalculator:\n"
-          "First number: %.2f\n"
-          "Second number: %.2f\n",
-          first, second);
-
-    NSLog(@"\nAdd = %f,\nSub = %f,\nMul = %f,\nDiv = %f",
-          calculate(opAdd, first, second),
-          calculate(opSub, first, second),
-          calculate(opMul, first, second),
-          calculate(opDivide, first, second)
+          "Number1: %@\n"
+          "Number2: %@\n",
+          number1, number2);
+    
+    Calculator *calcAdd = [[Calculator alloc]
+                            initWithNumber1: [number1 retain]
+                            andNumber2: [number2 retain]
+                            andOperator: opAdd
+                          ];
+    Calculator *calcMul = [[Calculator alloc]
+                            initWithNumber1: [number1 retain]
+                            andNumber2: [number2 retain]
+                            andOperator: opMul
+                          ];
+    Calculator *calcSub = [[Calculator alloc]
+                            initWithNumber1: [number1 retain]
+                            andNumber2: [number2 retain]
+                            andOperator: opSub
+                          ];
+    Calculator *calcDiv = [[Calculator alloc]
+                            initWithNumber1: number1 // do not retain here
+                            andNumber2: number2 // do not retain here
+                            andOperator: opDivide
+                          ];
+    NSLog(@"\nAdd = %f\nSub = %f\nMul = %f\nDiv = %f\n",
+          [calcAdd calculate],
+          [calcSub calculate],
+          [calcMul calculate],
+          [calcDiv calculate]
     );
-    
+
+    [calcAdd release];
+    [calcSub release];
+    [calcMul release];
+    [calcDiv release];
+
     // -----------------------------------------------------
-    // Homework Task #3:
-    Human human1, human2;
+    // Homework Task #2:
+    // NSAutoreleasePool *pool;
+    // pool = [NSAutoreleasePool new];
+    @autoreleasepool {
+        FlockOfBirds *flockOfBirds = [[FlockOfBirds alloc] init];
 
-    human1.name = @"Alex";
-    human1.age = 29;
-    human1.key = male;
+        Bird *bird1 = [[Bird alloc] initWithNumber:@1 andSex: male];
+        Bird *bird2 = [[Bird alloc] initWithNumber:@2 andSex: female];
+        Bird *bird3 = [[Bird alloc] initWithNumber:@3 andSex: male];
+        Bird *bird4 = [[Bird alloc] initWithNumber:@4 andSex: female];
+        
+        NSArray *birds = [[NSArray alloc] initWithObjects:bird1, bird2, bird3, bird4, nil];
+        [flockOfBirds configWithBirds:birds];
 
-    human2.name = @"Mary";
-    human2.age = 25;
-    human2.key = female;
-    
-    NSLog(@"\nHuman1: %@, %ld, %@\n"
-          "Human2: %@, %ld, %@\n",
-          human1.name, (long)human1.age, genderString(human1.key),
-          human2.name, (long)human2.age, [self convertToString:human2.key]);
+        [flockOfBirds autorelease];
+    }
+    // [pool release]; // this also works!
+
 }
-
 @end
