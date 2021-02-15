@@ -12,6 +12,9 @@
 		FE91E1B225CAA85200267D91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE91E1B125CAA85200267D91 /* Assets.xcassets */; };
 		FE91E1B525CAA85200267D91 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE91E1B325CAA85200267D91 /* Main.storyboard */; };
 		FE91E1B825CAA85300267D91 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FE91E1B725CAA85300267D91 /* main.m */; };
+		FE91E1F125D44AA900267D91 /* Calculator.m in Sources */ = {isa = PBXBuildFile; fileRef = FE91E1F025D44AA900267D91 /* Calculator.m */; };
+		FE91E1F525D53F9100267D91 /* Bird.m in Sources */ = {isa = PBXBuildFile; fileRef = FE91E1F425D53F9100267D91 /* Bird.m */; };
+		FE91E1F925D5448C00267D91 /* FlockOfBirds.m in Sources */ = {isa = PBXBuildFile; fileRef = FE91E1F825D5448C00267D91 /* FlockOfBirds.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +28,12 @@
 		FE91E1B625CAA85300267D91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE91E1B725CAA85300267D91 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FE91E1B925CAA85300267D91 /* Homework3.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Homework3.entitlements; sourceTree = "<group>"; };
+		FE91E1EF25D44AA900267D91 /* Calculator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Calculator.h; sourceTree = "<group>"; };
+		FE91E1F025D44AA900267D91 /* Calculator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Calculator.m; sourceTree = "<group>"; };
+		FE91E1F325D53F9100267D91 /* Bird.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bird.h; sourceTree = "<group>"; };
+		FE91E1F425D53F9100267D91 /* Bird.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Bird.m; sourceTree = "<group>"; };
+		FE91E1F725D5448C00267D91 /* FlockOfBirds.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlockOfBirds.h; sourceTree = "<group>"; };
+		FE91E1F825D5448C00267D91 /* FlockOfBirds.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlockOfBirds.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,8 +69,14 @@
 				FE91E1AB25CAA85000267D91 /* AppDelegate.h */,
 				FE91E1AC25CAA85000267D91 /* AppDelegate.m */,
 				FE91E1AE25CAA85000267D91 /* ViewController.h */,
+				FE91E1EF25D44AA900267D91 /* Calculator.h */,
+				FE91E1F025D44AA900267D91 /* Calculator.m */,
 				FE91E1AF25CAA85000267D91 /* ViewController.m */,
 				FE91E1B125CAA85200267D91 /* Assets.xcassets */,
+				FE91E1F725D5448C00267D91 /* FlockOfBirds.h */,
+				FE91E1F825D5448C00267D91 /* FlockOfBirds.m */,
+				FE91E1F325D53F9100267D91 /* Bird.h */,
+				FE91E1F425D53F9100267D91 /* Bird.m */,
 				FE91E1B325CAA85200267D91 /* Main.storyboard */,
 				FE91E1B625CAA85300267D91 /* Info.plist */,
 				FE91E1B725CAA85300267D91 /* main.m */,
@@ -139,8 +154,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE91E1B025CAA85000267D91 /* ViewController.m in Sources */,
+				FE91E1F525D53F9100267D91 /* Bird.m in Sources */,
+				FE91E1F125D44AA900267D91 /* Calculator.m in Sources */,
 				FE91E1B825CAA85300267D91 /* main.m in Sources */,
 				FE91E1AD25CAA85000267D91 /* AppDelegate.m in Sources */,
+				FE91E1F925D5448C00267D91 /* FlockOfBirds.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,6 +292,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_ENTITLEMENTS = Homework3/Homework3.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -292,6 +311,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_ENTITLEMENTS = Homework3/Homework3.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
