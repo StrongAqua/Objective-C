@@ -25,6 +25,17 @@
     return instance;
 }
 
+- (City *)cityForIATA:(NSString *)iata {
+    if (iata) {
+        for (City *city in _citiesArray) {
+            if ([city.code isEqualToString:iata]) {
+                return city;
+            }
+        }
+    }
+    return nil;
+}
+
 - (void)loadData
 {
     dispatch_async(dispatch_get_global_queue(QOS_CLASS_UTILITY, 0), ^{
