@@ -6,11 +6,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CoreLocation/CoreLocation.h"
 
-NS_ASSUME_NONNULL_BEGIN
+#define kLocationManagerDidUpdateLocation @"kLocationManagerDidUpdateLocation"
 
 @interface LocationManager : NSObject
 
+@property (strong, nonatomic) CLLocation *currentLocation;
+
 @end
 
-NS_ASSUME_NONNULL_END

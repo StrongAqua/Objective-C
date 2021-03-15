@@ -29,6 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)sharedInstance;
 - (void)loadData;
 - (City *)cityForIATA:(NSString *)iata;
+- (City *)cityForLocation:(CLLocation *)location;
 
 @end
 
