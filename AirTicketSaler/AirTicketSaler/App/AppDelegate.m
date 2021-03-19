@@ -8,6 +8,7 @@
 #import "AppDelegate.h"
 #import "MainViewController.h"
 #import "MapViewController.h"
+#import "TabBarController.h"
 
 @interface AppDelegate ()
 
@@ -22,11 +23,16 @@
     self.window = [[UIWindow alloc] initWithFrame: windowFrame];
     
     //MainViewController *mainViewController = [[MainViewController alloc] init];
-    MapViewController *mapViewController = [MapViewController new];
+    //MapViewController *mapViewController = [MapViewController new];
     
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController: mapViewController];
+    //UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController: mapViewController];
     
-    self.window.rootViewController = navigationController;
+    //self.window.rootViewController = navigationController;
+    
+    TabBarController *tabBarController = [[TabBarController alloc] init];
+       
+    self.window.rootViewController = tabBarController;
+    
     [self.window makeKeyAndVisible];
     
     return YES;
