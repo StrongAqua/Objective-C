@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6A6F00E32DF25540499A8D79 /* Pods_AirTicketSaler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C9805E28EB1829A9D102592 /* Pods_AirTicketSaler.framework */; };
 		FE12E49625F5038F00805D1B /* PlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE12E49525F5038F00805D1B /* PlaceViewController.m */; };
+		FE2AE871260375FE00E9E85A /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2AE870260375FE00E9E85A /* TabBarController.m */; };
 		FE53AE6F25EE573200B8E5BB /* Country.m in Sources */ = {isa = PBXBuildFile; fileRef = FE53AE6E25EE573200B8E5BB /* Country.m */; };
 		FE53AE7325EE5A0500B8E5BB /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = FE53AE7225EE5A0500B8E5BB /* City.m */; };
 		FE53AE7725EE5A8D00B8E5BB /* Airport.m in Sources */ = {isa = PBXBuildFile; fileRef = FE53AE7625EE5A8D00B8E5BB /* Airport.m */; };
@@ -36,6 +37,8 @@
 		C099343E39C154F36DF64ED4 /* Pods-AirTicketSaler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AirTicketSaler.release.xcconfig"; path = "Target Support Files/Pods-AirTicketSaler/Pods-AirTicketSaler.release.xcconfig"; sourceTree = "<group>"; };
 		FE12E49425F5038F00805D1B /* PlaceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaceViewController.h; sourceTree = "<group>"; };
 		FE12E49525F5038F00805D1B /* PlaceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlaceViewController.m; sourceTree = "<group>"; };
+		FE2AE86F260375FE00E9E85A /* TabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
+		FE2AE870260375FE00E9E85A /* TabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
 		FE53AE6D25EE573200B8E5BB /* Country.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Country.h; sourceTree = "<group>"; };
 		FE53AE6E25EE573200B8E5BB /* Country.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Country.m; sourceTree = "<group>"; };
 		FE53AE7125EE5A0500B8E5BB /* City.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = City.h; sourceTree = "<group>"; };
@@ -171,6 +174,8 @@
 			children = (
 				FE91E2EB25EE4ED400267D91 /* AppDelegate.h */,
 				FE91E2EC25EE4ED400267D91 /* AppDelegate.m */,
+				FE2AE86F260375FE00E9E85A /* TabBarController.h */,
+				FE2AE870260375FE00E9E85A /* TabBarController.m */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -395,6 +400,7 @@
 				FED091B325F7C7C900ED60C3 /* Ticket.m in Sources */,
 				FE91E2ED25EE4ED400267D91 /* AppDelegate.m in Sources */,
 				FE95A17425FF851D00960CA8 /* MapViewController.m in Sources */,
+				FE2AE871260375FE00E9E85A /* TabBarController.m in Sources */,
 				FE95A16425FF72E600960CA8 /* MapPrice.m in Sources */,
 				FE91E2FE25EE4ED600267D91 /* main.m in Sources */,
 			);
