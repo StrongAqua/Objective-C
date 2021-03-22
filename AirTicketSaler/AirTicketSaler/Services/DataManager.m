@@ -37,12 +37,29 @@
 }
 
 - (City *)cityForLocation:(CLLocation *)location {
+    if (_citiesArray.count <= 0)
+        return nil;
+
+    City* nearestCity = _citiesArray.firstObject;
+    double dLatt = location.coordinate.latitude - nearestCity.coordinate.latitude;
+    double dLong = location.coordinate.longitude - nearestCity.coordinate.longitude;
+    double minR = dLatt*dLatt + dLong*dLong;
+    
     for (City *city in _citiesArray) {
-        if (ceilf(city.coordinate.latitude) == ceilf(location.coordinate.latitude) && ceilf(city.coordinate.longitude) == ceilf(location.coordinate.longitude)) {
+        dLatt = location.coordinate.latitude - city.coordinate.latitude;
+        dLong = location.coordinate.longitude - city.coordinate.longitude;
+        double r = dLatt*dLatt + dLong*dLong;
+        if (r < minR) {
+            nearestCity = city;
+            minR = r;
+        }
+        /*
+        if (ceilf(city.coordinate.latitude) == ceilf(coordinate.latitude) && ceilf(city.coordinate.longitude) == ceilf(coordinate.longitude)) {
             return city;
         }
+        */
     }
-    return nil;
+    return nearestCity;
 }
 
 

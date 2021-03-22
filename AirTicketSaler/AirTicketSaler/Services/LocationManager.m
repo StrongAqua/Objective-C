@@ -26,6 +26,7 @@
         self.manager.distanceFilter = 500;
         
         [self.manager requestAlwaysAuthorization];
+        [self.manager requestLocation];
     }
     return self;
 }
@@ -43,6 +44,11 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:kLocationManagerDidUpdateLocation object:location];
         
     }
+}
+
+- (void)locationManager:(CLLocationManager *)manager
+       didFailWithError:(NSError *)error {
+    NSLog(@"Fail to get location: %@", error);
 }
 
 -(void)locationManagerDidChangeAuthorization:(CLLocationManager *)manager {
