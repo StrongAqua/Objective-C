@@ -18,5 +18,7 @@
 @property (nonatomic, strong) FavoriteTicket *favoriteTicket;
 @property (nonatomic, strong) FavoriteMapPrice *favoriteDirection;
 
+- (UIImage*) getLogoImage;
+
 @end
 

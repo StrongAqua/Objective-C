@@ -7,8 +7,7 @@
 
 #import "TicketTableViewCell.h"
 #import <YYWebImage/YYWebImage.h>
-
-#define AirlineLogo(iata) [NSURL URLWithString:[NSString stringWithFormat:@"https://pics.avs.io/200/200/%@.png", iata]];
+#import "AirlineLogo.h"
 
 @interface TicketTableViewCell ()
 @property (nonatomic, strong) UIImageView *airlineLogoView;
@@ -102,6 +101,10 @@
 
     // NSURL *urlLogo = AirlineLogo(favoriteTicket.airline);
     // [_airlineLogoView yy_setImageWithURL:urlLogo options:YYWebImageOptionSetImageWithFadeAnimation];
+}
+
+- (UIImage*) getLogoImage {
+    return [_airlineLogoView image];
 }
 
 @end
