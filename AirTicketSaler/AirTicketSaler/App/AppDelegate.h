@@ -11,5 +11,7 @@
 
 @property (nonatomic, strong) UIWindow * window;
 
++ (UIWindow*) getKeyWindow;
+
 @end
 

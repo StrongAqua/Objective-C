@@ -9,6 +9,7 @@
 #import "MainViewController.h"
 #import "MapViewController.h"
 #import "TabBarController.h"
+#import "NotificationCenter.h"
 
 @interface AppDelegate ()
 
@@ -22,22 +23,25 @@
     CGRect windowFrame = [[UIScreen mainScreen] bounds];
     self.window = [[UIWindow alloc] initWithFrame: windowFrame];
     
-    //MainViewController *mainViewController = [[MainViewController alloc] init];
-    //MapViewController *mapViewController = [MapViewController new];
-    
-    //UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController: mapViewController];
-    
-    //self.window.rootViewController = navigationController;
-    
     TabBarController *tabBarController = [[TabBarController alloc] init];
        
     self.window.rootViewController = tabBarController;
     
     [self.window makeKeyAndVisible];
     
+    [[NotificationCenter sharedInstance] registerService];
+    
     return YES;
 }
 
-
++ (UIWindow*) getKeyWindow {
+    for (id window in [[UIApplication sharedApplication] windows]) {
+        UIWindow* w = (UIWindow*) window;
+        if (w.keyWindow) {
+            return w;
+        }
+    }
+    return nil;
+}
 
 @end
