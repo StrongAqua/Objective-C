@@ -138,8 +138,6 @@
          _searchRequest.destionation = iata;
      }
      [button setTitle: title forState: UIControlStateNormal];
-
-    
  }
 
 @end

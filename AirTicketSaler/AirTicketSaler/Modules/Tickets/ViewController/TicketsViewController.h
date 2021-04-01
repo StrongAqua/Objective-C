@@ -11,6 +11,7 @@
 @interface TicketsViewController : UITableViewController
 
 - (instancetype)initWithTickets:(NSArray *)tickets;
+- (instancetype)initFavoriteTicketsController;
 
 @end
 
