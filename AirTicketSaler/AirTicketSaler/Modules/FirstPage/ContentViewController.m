@@ -43,9 +43,9 @@
 }
 
 - (void)setTitle:(NSString *)title {
-    _titleLabel.text = title;
-    float height = heightForText(title, _titleLabel.font, 200.0);
-    _titleLabel.frame = CGRectMake([UIScreen mainScreen].bounds.size.width/2 - 100.0, CGRectGetMinY(_imageView.frame) - 40.0 - height, 200.0, height);
+    self.titleLabel.text = title;
+    float height = heightForText(title, self.titleLabel.font, 200.0);
+    self.titleLabel.frame = CGRectMake([UIScreen mainScreen].bounds.size.width/2 - 100.0, CGRectGetMinY(_imageView.frame) - 40.0 - height, 200.0, height);
 }
 
 - (void)setContentText:(NSString *)contentText {

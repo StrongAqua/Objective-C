@@ -9,6 +9,7 @@
 #import "DataManager.h"
 #import "City.h"
 #import "Airport.h"
+#import "NSString+Localize.h"
 
 #define ReuseIdentifier @"CellIdentifier"
 
@@ -52,7 +53,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    _segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"Города", @"Аэропорты"]];
+    _segmentedControl = [[UISegmentedControl alloc] initWithItems:@[[@"cities" localize], [@"airports" localize]]];
     [_segmentedControl addTarget:self action:@selector(changeSource) forControlEvents:UIControlEventValueChanged];
     _segmentedControl.tintColor = [UIColor blackColor];
     self.navigationItem.titleView = _segmentedControl;
@@ -60,9 +61,9 @@
     [self changeSource];
     
     if (_placeType == PlaceTypeDeparture) {
-        self.title = @"Откуда";
+        self.title = [@"main_from" localize];
     } else {
-        self.title = @"Куда";
+        self.title = [@"main_to" localize];
     }
     
 }

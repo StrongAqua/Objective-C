@@ -1,0 +1,72 @@
+/* 
+  Localizable.strings
+  AirTicketSaler
+
+  Created by aprirez on 4/1/21.
+  
+*/
+
+// TabBarController
+
+"search_tab" = "Search";
+"map_tab" = "Map";
+"favorites_tab" = "Favorites";
+
+
+// MainViewController
+
+"main_from" = "From";
+"main_to" = "To";
+"main_search" = "Search";
+
+
+// FirstViewController
+
+"about_app_header" = "About App";
+"tickets_header" = "Tickets";
+"map_price_header" = "Map";
+"favorites_header" = "Favorites";
+"about_app_describe" = "Ticket finder application";
+"tickets_describe" = "Find the cheapest tickets";
+"map_price_describe" = "View the price map";
+"favorites_describe" = "Save selected tickets to favorites";
+
+"next_button" = "NEXT";
+"done_button" = "DONE";
+
+
+// TicketsViewController
+
+"tickets_title" = "Tickets";
+"directions" = "Directions";
+"add_to_favorite" = "Add to favorite";
+"remove_from_favorite" = "Remove from favorite";
+"remind_me" = "Remind me";
+"ticket_reminder" = "Ticket reminder";
+"notification_will_be_sent" = "Notification will be sent";
+"success" = "Success";
+
+// Alerts
+
+"error" = "Error";
+"tickets_not_found" = "Tickets not found";
+"close" = "Close";
+"not_set_place_arrival_or_departure" = "Not set place arrival or departure";
+"actions_with_tickets" = "Actions with tickets";
+"actions_with_tickets_describe" = "What to do with the ticket?";
+"not_determine_current_city" = "Not determine current city!";
+"remove_from_favorite" = "Remove from favorite";
+"add_to_favorite" = "Add to favorite";
+
+// PlaceViewController
+
+"cities" = "Cities";
+"airports" = "Airports";
+
+// MapViewController
+
+"rub." = "rub.";
+
+// LocationManager
+
+"failed_to_get_location" = "Failed to get location";
