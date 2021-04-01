@@ -10,6 +10,7 @@
 #import "CoreDataHelper.h"
 #import "NotificationCenter.h"
 #import "AirlineLogo.h"
+#import "NSString+Localize.h"
 
 #define TicketCellReuseIdentifier @"TicketCellIdentifier"
 
@@ -46,7 +47,7 @@ typedef enum {
     
     if (isFavorites) {
         
-        _segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"Билеты", @"Направления"]];
+        _segmentedControl = [[UISegmentedControl alloc] initWithItems:@[[@"tickets_title" localize], [@"directions" localize]]];
         [_segmentedControl addTarget:self action:@selector(changeSource) forControlEvents:UIControlEventValueChanged];
         _segmentedControl.tintColor = [UIColor blackColor];
         self.navigationItem.titleView = _segmentedControl;
@@ -72,12 +73,12 @@ typedef enum {
         case 0:
             _currentArray = _tickets;
             _favoritesPage = fvTickets;
-            self.title = @"Билеты";
+            self.title = [@"tickets_title" localize];
             break;
         case 1:
             _currentArray = _directions;
             _favoritesPage = fvDirections;
-            self.title = @"Направления";
+            self.title = [@"directions" localize];
             break;
         default:
             break;
@@ -93,7 +94,7 @@ typedef enum {
         isFavorites = YES;
         self.tickets = [NSMutableArray new];
         self.directions = [NSMutableArray new];
-        self.title = @"Избранное";
+        self.title = [@"favorites_tab" localize];
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self.tableView registerClass:[TicketTableViewCell class] forCellReuseIdentifier:TicketCellReuseIdentifier];
         
@@ -213,7 +214,7 @@ typedef enum {
 
 - (void) rowSelectedTicket:(NSIndexPath *)indexPath
 {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Действия с билетом" message:@"Что необходимо сделать с выбранным билетом?" preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:[@"actions_with_tickets" localize] message:[@"actions_with_tickets_describe?" localize] preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *favoriteAction;
     
     id ticket = [self->_tickets objectAtIndex:indexPath.row];
@@ -222,7 +223,7 @@ typedef enum {
            [[CoreDataHelper sharedInstance] isFavorite: ticket]
          )
        ) {
-        favoriteAction = [UIAlertAction actionWithTitle:@"Удалить из избранного" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        favoriteAction = [UIAlertAction actionWithTitle:[@"remove_from_favorite" localize] style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
             [[CoreDataHelper sharedInstance] removeFromFavorite:ticket];
             if (self->isFavorites) {
                 [self.currentArray removeObjectAtIndex:indexPath.row];
@@ -230,19 +231,19 @@ typedef enum {
             }
         }];
     } else {
-        favoriteAction = [UIAlertAction actionWithTitle:@"Добавить в избранное" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        favoriteAction = [UIAlertAction actionWithTitle:[@"add_to_favorite" localize] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [[CoreDataHelper sharedInstance] addToFavorite:ticket];
             [self.tableView reloadData];
         }];
     }
     
-    UIAlertAction *notificationAction = [UIAlertAction actionWithTitle:@"Напомнить" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *notificationAction = [UIAlertAction actionWithTitle:[@"remind_me" localize] style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
         self->notificationCell = [self.tableView cellForRowAtIndexPath:indexPath];
         [self->_dateTextField becomeFirstResponder];
     }];
 
     
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Закрыть" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:[@"close" localize] style:UIAlertActionStyleCancel handler:nil];
     [alertController addAction:favoriteAction];
     [alertController addAction:notificationAction];
     [alertController addAction:cancelAction];
@@ -252,7 +253,7 @@ typedef enum {
 - (void)doneButtonDidTap:(UIBarButtonItem *)sender
 {
     if (_datePicker.date && notificationCell) {
-        NSString *message = [NSString stringWithFormat:@"%@ - %@ за %lld руб.",
+        NSString *message = [NSString stringWithFormat:[@"%@ - %@ за %lld rub." localize],
             notificationCell.favoriteTicket.from,
             notificationCell.favoriteTicket.to,
             notificationCell.favoriteTicket.price];
@@ -267,11 +268,11 @@ typedef enum {
             @"Key1": @"Value1",
             @"Key2": @"Value2",
         };
-        Notification notification = NotificationMake(@"Напоминание о билете", message, _datePicker.date, image, dict);
+        Notification notification = NotificationMake([@"ticket_reminder" localize], message, _datePicker.date, image, dict);
         [[NotificationCenter sharedInstance] sendNotification:notification];
         
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Успешно" message:[NSString stringWithFormat:@"Уведомление будет отправлено - %@", _datePicker.date] preferredStyle:(UIAlertControllerStyleAlert)];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Закрыть" style:UIAlertActionStyleCancel handler:^(UIAlertAction* action) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:[@"success" localize] message:[NSString stringWithFormat:[@"notification_will_be_sent - %@" localize], _datePicker.date] preferredStyle:(UIAlertControllerStyleAlert)];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:[@"close" localize] style:UIAlertActionStyleCancel handler:^(UIAlertAction* action) {
             [self.view endEditing:YES];
         }];
         [alertController addAction:cancelAction];
@@ -286,16 +287,16 @@ typedef enum {
 
 - (void) rowSelectedDirection:(NSIndexPath *)indexPath
 {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Действия с билетом" message:@"Что необходимо сделать с выбранным направлением?" preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:[@"actions_with_tickets" localize] message:[@"actions_with_tickets_describe?" localize] preferredStyle:UIAlertControllerStyleActionSheet];
 
     UIAlertAction *favoriteAction;
-    favoriteAction = [UIAlertAction actionWithTitle:@"Удалить из избранного" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+    favoriteAction = [UIAlertAction actionWithTitle:[@"remove_from_favorite" localize] style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
         [[CoreDataHelper sharedInstance] mapPriceRemoveFromFavorite:[self->_directions objectAtIndex:indexPath.row]];
         [self.currentArray removeObjectAtIndex:indexPath.row];
         [self.tableView reloadData];
     }];
 
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Закрыть" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:[@"close" localize] style:UIAlertActionStyleCancel handler:nil];
     [alertController addAction:favoriteAction];
     [alertController addAction:cancelAction];
     [self presentViewController:alertController animated:YES completion:nil];

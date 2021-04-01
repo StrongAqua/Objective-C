@@ -7,6 +7,7 @@
 
 #import "LocationManager.h"
 #import "UIKit/UIKit.h"
+#import "NSString+Localize.h"
 
 @interface LocationManager () <CLLocationManagerDelegate>
 
@@ -68,7 +69,7 @@
             
         default: {
             UIAlertController *alert =
-            [UIAlertController alertControllerWithTitle:@"Уппс! " message:@"Не удается получить локацию" preferredStyle:(UIAlertControllerStyleAlert)];
+            [UIAlertController alertControllerWithTitle:@":(" message:[@"failed_to_get_location" localize] preferredStyle:(UIAlertControllerStyleAlert)];
             
             [alert addAction: [UIAlertAction actionWithTitle:@"Ok" style:(UIAlertActionStyleDefault) handler:nil]];
             [[[UIApplication sharedApplication].windows firstObject].rootViewController presentViewController:alert animated:YES completion:nil];

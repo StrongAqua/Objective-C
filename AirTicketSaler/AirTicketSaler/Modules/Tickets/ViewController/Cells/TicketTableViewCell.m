@@ -8,6 +8,7 @@
 #import "TicketTableViewCell.h"
 #import <YYWebImage/YYWebImage.h>
 #import "AirlineLogo.h"
+#import "NSString+Localize.h"
 
 @interface TicketTableViewCell ()
 @property (nonatomic, strong) UIImageView *airlineLogoView;
@@ -65,7 +66,7 @@
 
 - (void)setTicket:(Ticket *)ticket {
     _ticket = ticket;
-    _priceLabel.text = [NSString stringWithFormat:@"%@ руб.", ticket.price];
+    _priceLabel.text = [NSString stringWithFormat:[@"%@ rub." localize], ticket.price];
     _placesLabel.text = [NSString stringWithFormat:@"%@ - %@", ticket.from, ticket.to];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -78,7 +79,7 @@
 - (void)setFavoriteTicket:(FavoriteTicket *)favoriteTicket {
     _favoriteTicket = favoriteTicket;
     
-    _priceLabel.text = [NSString stringWithFormat:@"%lld руб.", favoriteTicket.price];
+    _priceLabel.text = [NSString stringWithFormat:[@"%lld rub." localize], favoriteTicket.price];
     _placesLabel.text = [NSString stringWithFormat:@"%@ - %@", favoriteTicket.from, favoriteTicket.to];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -91,7 +92,7 @@
 - (void)setFavoriteDirection:(FavoriteMapPrice *)favoriteDirection {
     _favoriteDirection = favoriteDirection;
     
-    _priceLabel.text = [NSString stringWithFormat:@"%lld руб.", favoriteDirection.value];
+    _priceLabel.text = [NSString stringWithFormat:[@"%lld rub." localize], favoriteDirection.value];
     _placesLabel.text = [NSString stringWithFormat:@"%@ - %@", favoriteDirection.origin, favoriteDirection.destination];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
